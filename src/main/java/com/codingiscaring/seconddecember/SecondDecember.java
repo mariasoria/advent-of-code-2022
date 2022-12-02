@@ -25,46 +25,46 @@ public class SecondDecember {
     private static Integer calculateScore(String opponentsPlay, String personalPlay) {
         int lostScore = 0;
         int winScore = 6;
-        int rock = 1;
-        int paper = 2;
-        int scissors = 3;
+        int rockPoints = 1;
+        int paperPoints = 2;
+        int scissorsPoints = 3;
 
         if (havePlayedTheSame(opponentsPlay, personalPlay)) {
             return calculateDrawScore(personalPlay);
         }
         if (isRock(opponentsPlay)) {
             if (isPaper(personalPlay)) {
-                return winScore + paper;
+                return winScore + paperPoints;
             } else {
-                return lostScore + scissors;
+                return lostScore + scissorsPoints;
             }
         }
         if (isPaper(opponentsPlay)) {
             if (isRock(personalPlay)) {
-                return lostScore + rock;
+                return lostScore + rockPoints;
             } else {
-                return winScore + scissors;
+                return winScore + scissorsPoints;
             }
         }
         if (isScissors(opponentsPlay) && isRock(personalPlay)) {
-            return winScore + rock;
+            return winScore + rockPoints;
         }
-        return lostScore + paper;
+        return lostScore + paperPoints;
     }
 
     private static Integer calculateDrawScore(String personalPlay) {
-        int rock = 1;
-        int paper = 2;
-        int scissors = 3;
+        int rockPoints = 1;
+        int paperPoints = 2;
+        int scissorsPoints = 3;
         int drawScore = 3;
 
         if (isRock(personalPlay)) {
-            return drawScore + rock;
+            return drawScore + rockPoints;
         }
         if (isPaper(personalPlay)) {
-            return drawScore + paper;
+            return drawScore + paperPoints;
         } else {
-            return drawScore + scissors;
+            return drawScore + scissorsPoints;
         }
     }
 
