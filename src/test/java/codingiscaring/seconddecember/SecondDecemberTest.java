@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SecondDecemberTest {
     @Test
-    void should_get_most_calories_from_puzzle_samples() throws FileNotFoundException {
+    void should_calculate_the_score_from_puzzle_samples() throws FileNotFoundException {
         assertEquals(13526, SecondDecember.playRockPaperScissors("advent_calendar_day_2.txt"));
     }
 
