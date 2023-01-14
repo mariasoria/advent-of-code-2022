@@ -13,4 +13,9 @@ class SecondDecemberTest {
         assertEquals(13526, SecondDecember.playRockPaperScissors("advent_calendar_day_2.txt"));
     }
 
+    @Test
+    void should_calculate_the_score_from_example_file() throws FileNotFoundException {
+        assertEquals(14204, SecondDecember.playRockPaperScissorsKnowingTheResult("advent_calendar_day_2.txt"));
+    }
+
 }

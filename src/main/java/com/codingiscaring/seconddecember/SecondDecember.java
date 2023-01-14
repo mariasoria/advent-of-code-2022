@@ -8,12 +8,16 @@ import java.util.Scanner;
 
 public class SecondDecember {
 
+    private static String rock = "A";
+    private static String paper = "B";
+    private static String scissors = "C";
+
     public static Integer playRockPaperScissors(String fileName) throws FileNotFoundException {
         File file = getFileFrom(fileName);
         int score = 0;
 
         Scanner fileContent = new Scanner(file);
-        while (!isTheEndOfFile(fileContent)) {
+        while (isNotTheEndOfFile(fileContent)) {
             String nextLine = fileContent.nextLine();
             String opponentsPlay = nextLine.split(" ")[0];
             String personalPlay = nextLine.split(" ")[1];
@@ -75,15 +79,15 @@ public class SecondDecember {
     }
 
     private static boolean isRock(String play) {
-        return play.equals("A") || play.equals("X");
+        return play.equals(rock) || play.equals("X");
     }
 
     private static boolean isPaper(String play) {
-        return play.equals("B") || play.equals("Y");
+        return play.equals(paper) || play.equals("Y");
     }
 
     private static boolean isScissors(String play) {
-        return play.equals("C") || play.equals("Z");
+        return play.equals(scissors) || play.equals("Z");
     }
 
     private static File getFileFrom(String fileName) {
@@ -91,8 +95,86 @@ public class SecondDecember {
         return new File(classLoader.getResource(fileName).getFile());
     }
 
-    private static boolean isTheEndOfFile(Scanner fileContent) {
-        return !fileContent.hasNextLine();
+    private static boolean isNotTheEndOfFile(Scanner fileContent) {
+        return fileContent.hasNextLine();
+    }
+
+    public static int playRockPaperScissorsKnowingTheResult(String fileName) throws FileNotFoundException {
+        File file = getFileFrom(fileName);
+        int score = 0;
+
+        Scanner fileContent = new Scanner(file);
+        while (isNotTheEndOfFile(fileContent)) {
+            String nextLine = fileContent.nextLine();
+            String opponentsPlay = nextLine.split(" ")[0];
+            String expectedResult = nextLine.split(" ")[1];
+            score += calculateTotalScore(opponentsPlay, expectedResult);
+        }
+        return score;
+    }
+
+    private static int calculateTotalScore(String opponentsPlay, String expectedResult) {
+        int points = 0;
+
+        String personalPlay = "";
+        if (shouldBeADraw(expectedResult)) {
+            personalPlay = opponentsPlay;
+            points += 3;
+        }
+        if (shouldLose(expectedResult)) {
+            personalPlay = returnALosingPlay(opponentsPlay);
+        }
+        if (shouldWin(expectedResult)) {
+            personalPlay = returnAWinningPlay(opponentsPlay);
+            points += 6;
+        }
+
+        return calculatePersonalScore(points, personalPlay);
+    }
+
+    private static int calculatePersonalScore(int points, String personalPlay) {
+        if(isPaper(personalPlay)) {
+            points += 2;
+        }
+        if(isRock(personalPlay)) {
+            points += 1;
+        }
+        if(isScissors(personalPlay)) {
+            points += 3;
+        }
+        return points;
+    }
+
+    private static String returnALosingPlay(String opponentsPlay) {
+        if (isRock(opponentsPlay)) {
+            return scissors;
+        }
+        if (isPaper(opponentsPlay)) {
+            return rock;
+        }
+        return paper;
+    }
+
+    private static String returnAWinningPlay(String opponentsPlay) {
+        if (isRock(opponentsPlay)) {
+            return paper;
+        }
+        if (isPaper(opponentsPlay)) {
+            return scissors;
+        }
+        return rock;
+    }
+
+    private static boolean shouldLose(String play) {
+        return play.equals("X");
+    }
+
+    private static boolean shouldBeADraw(String play) {
+        return play.equals("Y");
+    }
+
+    private static boolean shouldWin(String play) {
+        return play.equals("Z");
     }
 
 }
