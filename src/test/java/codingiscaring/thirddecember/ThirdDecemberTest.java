@@ -10,11 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ThirdDecemberTest {
 
     @Test
-    void should_calculate_the_sum_of_priorities_from_example_file() throws FileNotFoundException {
-        assertEquals(157, ThirdDecember.findSumPriorities("example.txt"));
-    }
-
-    @Test
     void should_calculate_the_sum_of_priorities_from_puzzle_file() throws FileNotFoundException {
         assertEquals(8105, ThirdDecember.findSumPriorities("advent_calendar_day_3.txt"));
     }
@@ -24,4 +19,8 @@ class ThirdDecemberTest {
         assertEquals('p', ThirdDecember.findRucksackPriorityItem("vJrwpWtwJgWrhcsFMMfFFhFp"));
     }
 
+    @Test
+    void should_calculate_the_sum_of_group_priorities_from_puzzle_file() throws FileNotFoundException {
+        assertEquals(2363, ThirdDecember.findSumPrioritiesByGroups("advent_calendar_day_3.txt"));
+    }
 }
