@@ -1,6 +1,6 @@
 package com.codingiscaring.seconddecember;
 
-import com.codingiscaring.firstdecember.FirstDecember;
+import com.codingiscaring.FileUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,11 +13,11 @@ public class SecondDecember {
     private static String scissors = "C";
 
     public static Integer playRockPaperScissors(String fileName) throws FileNotFoundException {
-        File file = getFileFrom(fileName);
+        File file = FileUtils.getFileFrom(fileName);
         int score = 0;
 
         Scanner fileContent = new Scanner(file);
-        while (isNotTheEndOfFile(fileContent)) {
+        while (FileUtils.isNotTheEndOfFile(fileContent)) {
             String nextLine = fileContent.nextLine();
             String opponentsPlay = nextLine.split(" ")[0];
             String personalPlay = nextLine.split(" ")[1];
@@ -90,21 +90,12 @@ public class SecondDecember {
         return play.equals(scissors) || play.equals("Z");
     }
 
-    private static File getFileFrom(String fileName) {
-        ClassLoader classLoader = FirstDecember.class.getClassLoader();
-        return new File(classLoader.getResource(fileName).getFile());
-    }
-
-    private static boolean isNotTheEndOfFile(Scanner fileContent) {
-        return fileContent.hasNextLine();
-    }
-
-    public static int playRockPaperScissorsKnowingTheResult(String fileName) throws FileNotFoundException {
-        File file = getFileFrom(fileName);
+    public static int playRockPaperScissorsWithExpectedResult(String fileName) throws FileNotFoundException {
+        File file = FileUtils.getFileFrom(fileName);
         int score = 0;
 
         Scanner fileContent = new Scanner(file);
-        while (isNotTheEndOfFile(fileContent)) {
+        while (FileUtils.isNotTheEndOfFile(fileContent)) {
             String nextLine = fileContent.nextLine();
             String opponentsPlay = nextLine.split(" ")[0];
             String expectedResult = nextLine.split(" ")[1];

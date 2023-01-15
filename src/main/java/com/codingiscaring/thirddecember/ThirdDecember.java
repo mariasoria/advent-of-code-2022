@@ -1,6 +1,6 @@
 package com.codingiscaring.thirddecember;
 
-import com.codingiscaring.firstdecember.FirstDecember;
+import com.codingiscaring.FileUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,10 +10,10 @@ public class ThirdDecember {
 
     public static Integer findSumPriorities(String fileName) throws FileNotFoundException {
         int sumOfPriorities = 0;
-        File file = getFileFrom(fileName);
+        File file = FileUtils.getFileFrom(fileName);
 
         Scanner fileContent = new Scanner(file);
-        while (isNotTheEndOfFile(fileContent)) {
+        while (FileUtils.isNotTheEndOfFile(fileContent)) {
             String rucksackContent = fileContent.nextLine();
             char item = findRucksackPriorityItem(rucksackContent);
             sumOfPriorities += calculatePriorityForCurrentRucksack(item);
@@ -46,15 +46,6 @@ public class ThirdDecember {
 
     private static boolean isLowerCase(int asciiValue) {
         return asciiValue >= 97 && asciiValue <= 122;
-    }
-
-    private static File getFileFrom(String fileName) {
-        ClassLoader classLoader = FirstDecember.class.getClassLoader();
-        return new File(classLoader.getResource(fileName).getFile());
-    }
-
-    private static boolean isNotTheEndOfFile(Scanner fileContent) {
-        return fileContent.hasNextLine();
     }
 
 }

@@ -1,5 +1,7 @@
 package com.codingiscaring.firstdecember;
 
+import com.codingiscaring.FileUtils;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -7,11 +9,11 @@ import java.util.*;
 public class FirstDecember {
 
     public static int countMostCalories(String fileName) throws FileNotFoundException {
-        File file = getFileFrom(fileName);
+        File file = FileUtils.getFileFrom(fileName);
         int currentTotal = 0;
         int mostCalories = 0;
         Scanner fileContent = new Scanner(file);
-        while (!isTheEndOfFile(fileContent)) {
+        while (FileUtils.isNotTheEndOfFile(fileContent)) {
             String currentLineContent = fileContent.nextLine();
             if (elfIsCarryingMoreCalories(currentLineContent)) {
                 currentTotal += Integer.parseInt(currentLineContent);
@@ -26,12 +28,12 @@ public class FirstDecember {
     }
 
     public static int countTopThreeMostCalories(String filename) throws FileNotFoundException {
-        File file = getFileFrom(filename);
+        File file = FileUtils.getFileFrom(filename);
         List<Integer> allCalories = new ArrayList<>();
         int currentTotal = 0;
 
         Scanner fileContent = new Scanner(file);
-        while (!isTheEndOfFile(fileContent)) {
+        while (FileUtils.isNotTheEndOfFile(fileContent)) {
             String currentLineContent = fileContent.nextLine();
             if (elfIsCarryingMoreCalories(currentLineContent)) {
                 currentTotal += Integer.parseInt(currentLineContent);
@@ -54,15 +56,6 @@ public class FirstDecember {
 
     private static int sumTopThreeCalories(List<Integer> topThreeMostCalories) {
         return topThreeMostCalories.stream().reduce(0,Integer::sum);
-    }
-
-    private static File getFileFrom(String fileName) {
-        ClassLoader classLoader = FirstDecember.class.getClassLoader();
-        return new File(classLoader.getResource(fileName).getFile());
-    }
-
-    private static boolean isTheEndOfFile(Scanner fileContent) {
-        return !fileContent.hasNextLine();
     }
 
     private static boolean elfIsCarryingMoreCalories(String currentLineContent) {
