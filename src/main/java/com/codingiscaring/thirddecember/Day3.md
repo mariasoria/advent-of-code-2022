@@ -1,4 +1,7 @@
---- Day 3: Rucksack Reorganization ---
+### --- Day 3: Rucksack Reorganization ---
+
+#### --- Part One ---
+
 One Elf has the important job of loading all the rucksacks with supplies for the jungle journey.
 Unfortunately, that Elf didn't quite follow the packing instructions, and so a few items now need to
 be rearranged.
@@ -18,12 +21,18 @@ represent items in the second compartment.
 
 For example, suppose you have the following list of contents from six rucksacks:
 
-vJrwpWtwJgWrhcsFMMfFFhFp
-jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
-PmmdzqPrVvPwwTWBwg
-wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
-ttgJtRGJQctTZtZT
-CrZsJsPPZsGzwwsLwLmpwMDw
+`vJrwpWtwJgWrhcsFMMfFFhFp`
+
+`jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL`
+
+`PmmdzqPrVvPwwTWBwg`
+
+`wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn`
+
+`ttgJtRGJQctTZtZT`
+
+`CrZsJsPPZsGzwwsLwLmpwMDw`
+
 
 The first rucksack contains the items vJrwpWtwJgWrhcsFMMfFFhFp, which means its first compartment
 contains the items vJrwpWtwJgWr, while the second compartment contains the items hcsFMMfFFhFp. The
@@ -42,5 +51,6 @@ Uppercase item types A through Z have priorities 27 through 52.
 In the above example, the priority of the item type that appears in both compartments of each
 rucksack is 16 (p), 38 (L), 42 (P), 22 (v), 20 (t), and 19 (s); the sum of these is 157.
 
-Find the item type that appears in both compartments of each rucksack. What is the sum of the
-priorities of those item types?
+Find the item type that appears in both compartments of each rucksack.
+
+##### QUESTION: What is the sum of the priorities of those item types?
